@@ -98,6 +98,7 @@ for number in leadinglasthundred:
 	number = number.split()[0]
 	begin[number]=1
 
+print("Begin keys")
 print(begin.keys())
 print(len(begin.keys()))
 
@@ -106,6 +107,7 @@ for number in trailing:
 	number = number.split()[-1]
 	end[number] = 1
 
+print("End keys")
 print(end.keys())
 print(len(end.keys()))
 
@@ -113,5 +115,6 @@ begin_or_end = begin.copy()
 for number in end.keys():
 	begin_or_end[number] = 1
 
+print("Begin or end keys")
 print(begin_or_end.keys())
 print(len(begin_or_end.keys()))

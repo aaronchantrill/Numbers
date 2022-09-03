@@ -1,0 +1,27 @@
+#JSGF V1.0;
+
+grammar number;
+
+<ones> = ( ONE | TWO | THREE | FOUR | FIVE | SIX | SEVEN | EIGHT | NINE );
+<one_to_ten> = ( <ones> | TEN );
+<oneteens> = (<one_to_ten> | ( ELEVEN | TWELVE | THIRTEEN | FOURTEEN | FIFTEEN | SIXTEEN | SEVENTEEN | EIGHTEEN | NINETEEN ));
+<tens> = ( TWENTY | THIRTY | FORTY | FIFTY | SIXTY | SEVENTY | EIGHTY | NINETY );
+<hundred> = HUNDRED;
+<magnitude> = ( THOUSAND | MILLION | BILLION | QUADRILLION );
+<trailing> = ( <tens> | <tens> <ones> );
+<leadinghundred> = A | <ones>;
+<leadinglasthundred> = ( A | <oneteens> | <tens> | <tens> <ones> );
+<leadingmagnitude> = [<leadinghundred> <hundred>] <trailing>;
+public <number> = ( 
+    <oneteens> |
+    <tens> |
+    <tens> <ones> |
+    <leadinglasthundred> <hundred> |
+    <leadinglasthundred> <hundred> [<trailing>] |
+    <leadingmagnitude> QUADRILLION [<leadingmagnitude> TRILLION] [<leadingmagnitude> BILLION] [<leadingmagnitude> MILLION] [<leadingmagnitude> THOUSAND] [<leadinglasthundred> <hundred> [<trailing>]] |
+    [<leadingmagnitude> QUADRILLION] <leadingmagnitude> TRILLION [<leadingmagnitude> BILLION] [<leadingmagnitude> MILLION] [<leadingmagnitude> THOUSAND] [<leadinglasthundred> <hundred> [<trailing>]] |
+    [<leadingmagnitude> QUADRILLION] [<leadingmagnitude> TRILLION] <leadingmagnitude> BILLION [<leadingmagnitude> MILLION] [<leadingmagnitude> THOUSAND] [<leadinglasthundred> <hundred> [<trailing>]] |
+    [<leadingmagnitude> QUADRILLION] [<leadingmagnitude> TRILLION] [<leadingmagnitude> BILLION] <leadingmagnitude> MILLION [<leadingmagnitude> THOUSAND] [<leadinglasthundred> <hundred> [<trailing>]] |
+    [<leadingmagnitude> QUADRILLION] [<leadingmagnitude> TRILLION] [<leadingmagnitude> BILLION] [<leadingmagnitude> MILLION] <leadingmagnitude> THOUSAND [<leadinglasthundred> <hundred> [<trailing>]]
+);
+    

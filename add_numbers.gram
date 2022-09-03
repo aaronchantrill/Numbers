@@ -1,0 +1,7 @@
+#JSGF V1.0;
+
+include number;
+
+grammar add_numbers;
+
+public <add_numbers> = WHAT IS <number> ADDED TO <number>
